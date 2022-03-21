@@ -58,7 +58,7 @@ class ForegroundNotificationFactory(
 
    private fun createPendingIntent() =
       Intent(context, MainActivity::class.java).let { notificationIntent ->
-         PendingIntent.getActivity(context, 0, notificationIntent, 0)
+         PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_MUTABLE)
       }
 
    @Suppress("DEPRECATION")

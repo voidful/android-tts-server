@@ -10,8 +10,11 @@ function silenceMode()
     local to = silenceModeTimeRange.to[1] * 60 + silenceModeTimeRange.to[2]
     local now = date.hour * 60 + date.min
 
-    if (from <= to) then return from <= now and now <= to
-    else return from <= now or now <= to end
+    if (from <= to) then
+        return from <= now and now <= to
+    else
+        return from <= now or now <= to
+    end
 end
 
 function discoverSonosDevices()
