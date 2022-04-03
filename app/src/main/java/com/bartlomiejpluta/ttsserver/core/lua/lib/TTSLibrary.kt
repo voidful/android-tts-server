@@ -27,7 +27,7 @@ class TTSLibrary(private val ttsEngine: TTSEngine) : TwoArgFunction() {
 
    class SayMethod(private val ttsEngine: TTSEngine) : TwoArgFunction() {
       override fun call(text: LuaValue, language: LuaValue): LuaValue {
-         val locale = Locale.forLanguageTag(language.checkjstring().toUpperCase(Locale.ROOT))
+         val locale = Locale(language.checkjstring().toUpperCase(Locale.ROOT))
          ttsEngine.performTTS(text.checkjstring(), locale)
 
          return LuaValue.NIL
@@ -36,7 +36,7 @@ class TTSLibrary(private val ttsEngine: TTSEngine) : TwoArgFunction() {
 
    class CacheMethod(private val ttsEngine: TTSEngine) : ThreeArgFunction() {
       override fun call(text: LuaValue, language: LuaValue, format: LuaValue): LuaValue {
-         val lang = Locale.forLanguageTag(language.checkjstring())
+         val lang = Locale(language.checkjstring().toUpperCase(Locale.ROOT))
          val audioFormat = format
             .takeIf { it !is LuaNil }
             ?.let { AudioFormat.valueOf(it.checkjstring()) }
